@@ -1,6 +1,15 @@
-﻿namespace MyTodoList.Services.UserInterfaces
+﻿using MyTodoList.Services.Users;
+using System.Buffers.Text;
+
+namespace MyTodoList.Services.UserInterfaces
 {
-    internal interface IUserInterfaceService
+    public interface IUserInterfaceService 
     {
+        void MainInterfases();
+
+        void SignUpInterfases();
+
+        void SignInInterfases();
+
     }
 }
