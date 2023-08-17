@@ -1,6 +1,8 @@
 ﻿namespace MyTodoList.Services.UserInterfaces
 {
-    internal interface IUserInterfaceService
+    public interface IUserInterfaceService
+
+    public interface IUserInterfaceService
     {
     }
 }
