@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using MyTodoList.Infrastructure.Repositories;
+﻿using MyTodoList.Infrastructure.Repositories;
 using MyTodoList.Models.Users;
+using System;
+using System.Linq;
 
 namespace MyTodoList.Services.Users
 {
