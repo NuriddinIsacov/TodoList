@@ -7,5 +7,7 @@ namespace MyTodoList.Services.Users
         void CreateUser(User user);
         User GetUser(string username);
         void UpdateUser(User user);
+
+        int CountUsers();
     }
 }

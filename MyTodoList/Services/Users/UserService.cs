@@ -46,5 +46,11 @@ namespace MyTodoList.Services.Users
                 Console.WriteLine($"Vujudaga kelgan xatolik:  {exception.Message}");
             }
         }
+
+        public int CountUsers()
+        {
+            return this.Users.Count;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using MyTodoList.Services.Users;
+﻿using MyTodoList.Models.Users;
+using MyTodoList.Services.Users;
 using System;
 using System.Threading;
 
@@ -8,6 +9,10 @@ namespace MyTodoList.Services.UserInterfaces
     {
         private bool sucsess;
         private byte mainFlag;
+        private int zerohNumber = 0;
+        private int firstNumber = 1;
+        private int secondNumber = 2;
+        private int thirdNumber = 3;
 
         public int EnterMain()
         {
@@ -39,7 +44,7 @@ namespace MyTodoList.Services.UserInterfaces
                 Console.Write("  Enter number: ");
                 sucsess = byte.TryParse(Console.ReadLine(), out mainFlag);
 
-                if (!sucsess || mainFlag > 3 || mainFlag < 1)
+                if (!sucsess || mainFlag > thirdNumber || mainFlag < firstNumber)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Pleas enter correct number!!");
@@ -50,7 +55,7 @@ namespace MyTodoList.Services.UserInterfaces
                 }
                 else
                 {
-                    if (mainFlag != 3)
+                    if (mainFlag != thirdNumber)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Correct number!!");
@@ -70,23 +75,100 @@ namespace MyTodoList.Services.UserInterfaces
 
 
 
-            } while (!sucsess || mainFlag > 3 || mainFlag < 1);
+            } while (!sucsess || mainFlag > thirdNumber || mainFlag < firstNumber);
 
             return mainFlag;
         }
 
 
 
+        public void SignUp(IUserService userServise)
+        {
+            User user = new User();
+
+            int signUpFlag = zerohNumber;
+            bool signUpCheck = default;
+            string firstName = string.Empty;
+            string lastName = string.Empty;
+            string nickName = string.Empty;
+            string password = string.Empty;
+
+
+            Console.WriteLine("----------{ SIGN UP }----------");
+            Console.Write("First name: "); firstName = Console.ReadLine();
+            Console.Write("Last name: "); lastName = Console.ReadLine();
+            Console.Write("Nick name: "); nickName = Console.ReadLine();
+            Console.Write("Password: "); password = Console.ReadLine();
+
+
+            Console.Write(@"
+1.
+    Save.
+2.
+    Exit.
+");
+            Console.Clear();
+            do
+            {
+                Console.Write(@"
+1.
+    Save.
+2.
+    Exit.
+");
+                Console.Write(" Enter number: ");
+                signUpCheck = int.TryParse(Console.ReadLine(), out signUpFlag);
+
+
+                if (!signUpCheck || signUpFlag > secondNumber || zerohNumber >= signUpFlag)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Pleas enter correct number!!");
+                    Thread.Sleep(2000);
+                    Console.ResetColor();
+                    Console.Clear();
+
+                }
+                else
+                {
+                    if (signUpFlag != secondNumber)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Correct number!!");
+                        Thread.Sleep(500);
+                        Console.Clear();
+                    }
+                    Thread.Sleep(1000);
+                    Console.ResetColor();
+                }
+
+            } while (!signUpCheck || signUpFlag > secondNumber || signUpFlag < firstNumber);
+
+            if (signUpFlag == firstNumber)
+            {
+                user.FirstName = firstName;
+                user.LastName = lastName;
+                user.UserName = nickName;
+                user.Password = password;
+
+                userServise.CreateUser(user);
+
+            }
+            else if (signUpFlag == secondNumber)
+            {
+                return;
+            }
+
+
+
+
+        }
 
         public void SignIn(IUserService user)
         {
             throw new System.NotImplementedException();
         }
 
-        public void SignUp(IUserService user)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 }

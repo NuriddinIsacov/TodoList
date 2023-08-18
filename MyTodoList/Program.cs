@@ -1,5 +1,6 @@
 ﻿using MyTodoList.Services.UserInterfaces;
 using MyTodoList.Services.Users;
+using System;
 
 namespace MyTodoList
 {
@@ -18,12 +19,12 @@ namespace MyTodoList
                     case 1:
                         {
                             userInterface.SignUp(userService);
-
                             break;
                         }
 
                     case 2:
                         {
+                            Console.WriteLine(userService.CountUsers());
                             break;
                         }
 

@@ -6,7 +6,7 @@ namespace MyTodoList.Services.UserInterfaces
     {
         int EnterMain();
 
-        void SignIn(IUserService user);
+        void SignIn(IUserService userServise);
 
         void SignUp(IUserService user);
 
