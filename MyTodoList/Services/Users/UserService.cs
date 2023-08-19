@@ -19,11 +19,19 @@ namespace MyTodoList.Services.Users
             }
         }
 
-        public User GetUser(string username)
+        public User GetUser(string username, string password)
         {
             try
             {
-                return this.Users.FirstOrDefault(user => user.UserName == username);
+                foreach (var user in this.Users)
+                {
+                    if (user.UserName == username && user.Password == password)
+                    {
+                        return user;
+                    }
+                }
+                //this.Users.FirstOrDefault(user => user.UserName == username);
+                return null;
             }
             catch (Exception exception)
             {

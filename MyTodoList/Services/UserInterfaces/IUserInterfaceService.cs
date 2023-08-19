@@ -8,7 +8,7 @@ namespace MyTodoList.Services.UserInterfaces
 
         void SignIn(IUserService userServise);
 
-        void SignUp(IUserService user);
+        void SignUp(IUserService userServise);
 
 
     }

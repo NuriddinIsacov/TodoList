@@ -164,9 +164,41 @@ namespace MyTodoList.Services.UserInterfaces
 
         }
 
-        public void SignIn(IUserService user)
+
+
+        public void SignIn(IUserService userServise)
         {
-            throw new System.NotImplementedException();
+            string equalName = string.Empty;
+            string equalPassword = string.Empty;
+
+            do
+            {
+                Console.Write("Enter User name: ");
+                equalName = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(equalName));
+
+            do
+            {
+                Console.Write("Enter Password: ");
+                equalPassword = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(equalPassword));
+
+
+            User user = new User();
+            user = userServise.GetUser(equalName, equalPassword);
+
+            if (user != null)
+            {
+                Console.WriteLine(user.FirstName);
+                Console.WriteLine(user.LastName);
+                Console.WriteLine(user.UserName);
+                Thread.Sleep(2000);
+
+            }
+
+
+
+
         }
 
     }
