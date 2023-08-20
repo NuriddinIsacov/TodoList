@@ -1,4 +1,5 @@
 ﻿using MyTodoList.Models.Users;
+using MyTodoList.Services.Notes;
 using MyTodoList.Services.Users;
 using System;
 using System.Threading;
@@ -13,6 +14,9 @@ namespace MyTodoList.Services.UserInterfaces
         private int firstNumber = 1;
         private int secondNumber = 2;
         private int thirdNumber = 3;
+        private NoteService noteService = new NoteService();
+
+
 
         public int EnterMain()
         {
@@ -85,7 +89,6 @@ namespace MyTodoList.Services.UserInterfaces
         public void SignUp(IUserService userServise)
         {
             User user = new User();
-
             int signUpFlag = zerohNumber;
             bool signUpCheck = default;
             string firstName = string.Empty;
@@ -168,8 +171,11 @@ namespace MyTodoList.Services.UserInterfaces
 
         public void SignIn(IUserService userServise)
         {
+            User user = new User();
+            int choice = default;
             string equalName = string.Empty;
             string equalPassword = string.Empty;
+
 
             do
             {
@@ -184,16 +190,49 @@ namespace MyTodoList.Services.UserInterfaces
             } while (string.IsNullOrWhiteSpace(equalPassword));
 
 
-            User user = new User();
             user = userServise.GetUser(equalName, equalPassword);
+
+
 
             if (user != null)
             {
-                Console.WriteLine(user.FirstName);
-                Console.WriteLine(user.LastName);
-                Console.WriteLine(user.UserName);
-                Thread.Sleep(2000);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("<{----USER FOUND----}>");
+                Thread.Sleep(500);
+                Console.ResetColor();
+                Console.Clear();
 
+                Console.WriteLine(@$"
+<----{user.FirstName}---->
+
+1.
+    Add to-do list.
+2.
+    All the Task.
+3.
+    Pending Tasks.
+4.
+    Completed Tasks.
+5.
+    EXIT.
+");
+                Console.Write("Enter number: ");
+                choice = int.Parse(Console.ReadLine());
+                
+
+                if (choice == firstNumber)
+                {
+                    noteService.AddNote(user);
+
+                }else if(choice == firstNumber)
+                {
+                    noteService.AllTasks(user);
+                }
+
+                
+
+
+                Thread.Sleep(5000);
             }
 
 

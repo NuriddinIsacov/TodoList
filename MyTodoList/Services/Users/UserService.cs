@@ -43,6 +43,8 @@ namespace MyTodoList.Services.Users
 
         public void UpdateUser(User user)
         {
+
+
             try
             {
                 User storageUser = this.Users.FirstOrDefault(item => item.UserName == user.UserName);
