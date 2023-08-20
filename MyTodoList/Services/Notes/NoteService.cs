@@ -15,6 +15,7 @@ namespace MyTodoList.Services.Notes
         public void AddNote(User userServise)
         {
             Note note = new Note();
+            List<Note> userServiseNote = userServise.Notes;
             do
             {
                 Console.WriteLine("Please enter text.");
@@ -24,6 +25,7 @@ namespace MyTodoList.Services.Notes
                 choiceSaveOrNo = int.Parse(Console.ReadLine());
                 if (choiceSaveOrNo == 1)
                 {
+                    note.Title = textNote;
                     userServise.Notes.Add(note);
                 }
                 else if (choiceSaveOrNo == 2)
