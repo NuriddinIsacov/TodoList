@@ -171,7 +171,7 @@ namespace MyTodoList.Services.UserInterfaces
 
         public void SignIn(IUserService userServise)
         {
-            User user = new User();
+
             int choice = default;
             string equalName = string.Empty;
             string equalPassword = string.Empty;
@@ -189,8 +189,7 @@ namespace MyTodoList.Services.UserInterfaces
                 equalPassword = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(equalPassword));
 
-
-            user = userServise.GetUser(equalName, equalPassword);
+            var user = userServise.GetUser(equalName, equalPassword);
 
 
 
@@ -218,18 +217,19 @@ namespace MyTodoList.Services.UserInterfaces
 ");
                 Console.Write("Enter number: ");
                 choice = int.Parse(Console.ReadLine());
-                
+
 
                 if (choice == firstNumber)
                 {
                     noteService.AddNote(user);
 
-                }else if(choice == firstNumber)
+                }
+                else if (choice == firstNumber)
                 {
                     noteService.AllTasks(user);
                 }
 
-                
+
 
 
                 Thread.Sleep(5000);
