@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq;
-using MyTodoList.Infrastructure.Repositories;
+﻿using MyTodoList.Infrastructure.Repositories;
 using MyTodoList.Models.Users;
+using System;
+using System.Linq;
 
 namespace MyTodoList.Services.Users
 {
@@ -19,11 +19,19 @@ namespace MyTodoList.Services.Users
             }
         }
 
-        public User GetUser(string username)
+        public User GetUser(string username, string password)
         {
             try
             {
-                return this.Users.FirstOrDefault(user => user.UserName == username);
+                foreach (var user in this.Users)
+                {
+                    if (user.UserName == username && user.Password == password)
+                    {
+                        return user;
+                    }
+                }
+                //this.Users.FirstOrDefault(user => user.UserName == username);
+                return null;
             }
             catch (Exception exception)
             {
@@ -35,6 +43,8 @@ namespace MyTodoList.Services.Users
 
         public void UpdateUser(User user)
         {
+
+
             try
             {
                 User storageUser = this.Users.FirstOrDefault(item => item.UserName == user.UserName);
@@ -46,5 +56,11 @@ namespace MyTodoList.Services.Users
                 Console.WriteLine($"Vujudaga kelgan xatolik:  {exception.Message}");
             }
         }
+
+        public int CountUsers()
+        {
+            return this.Users.Count;
+        }
+
     }
 }
