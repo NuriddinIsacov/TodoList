@@ -1,4 +1,5 @@
-﻿using MyTodoList.Models.Users;
+﻿using MyTodoList.Models.Notes;
+using MyTodoList.Models.Users;
 using MyTodoList.Services.Notes;
 using MyTodoList.Services.Users;
 using System;
@@ -89,6 +90,7 @@ namespace MyTodoList.Services.UserInterfaces
         public void SignUp(IUserService userServise)
         {
             User user = new User();
+            Note note = new Note();
             int signUpFlag = zerohNumber;
             bool signUpCheck = default;
             string firstName = string.Empty;
@@ -141,7 +143,7 @@ namespace MyTodoList.Services.UserInterfaces
                         Thread.Sleep(500);
                         Console.Clear();
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     Console.ResetColor();
                 }
 
@@ -154,6 +156,7 @@ namespace MyTodoList.Services.UserInterfaces
                 user.UserName = nickName;
                 user.Password = password;
 
+
                 userServise.CreateUser(user);
 
             }
@@ -161,14 +164,8 @@ namespace MyTodoList.Services.UserInterfaces
             {
                 return;
             }
-
-
-
-
         }
-
-
-
+        // This is SignIn method it's enter user.
         public void SignIn(IUserService userServise)
         {
 
@@ -191,8 +188,6 @@ namespace MyTodoList.Services.UserInterfaces
 
             var user = userServise.GetUser(equalName, equalPassword);
 
-
-
             if (user != null)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -209,10 +204,6 @@ namespace MyTodoList.Services.UserInterfaces
 2.
     All the Task.
 3.
-    Pending Tasks.
-4.
-    Completed Tasks.
-5.
     EXIT.
 ");
                 Console.Write("Enter number: ");
@@ -224,19 +215,15 @@ namespace MyTodoList.Services.UserInterfaces
                     noteService.AddNote(user);
 
                 }
-                else if (choice == firstNumber)
+                else if (choice == secondNumber)
                 {
                     noteService.AllTasks(user);
                 }
-
-
-
-
-                Thread.Sleep(5000);
+                else
+                {
+                    return;
+                }
             }
-
-
-
 
         }
 
